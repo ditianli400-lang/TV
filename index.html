@@ -149,55 +149,55 @@ main { max-width:1280px; margin:auto; padding:26px 22px 40px; }
   <nav class="nav">
     <a class="logo" href="#">Mini<span>Drama</span></a>
     <div class="links">
-      <a class="active" href="#accueil">Accueil</a>
-      <a href="#tendances">Tendances</a>
-      <a href="#romance">Romance</a>
-      <a href="#nouveautes">Nouveautés</a>
+      <a class="active" href="#accueil" data-i18n="nav_home">Accueil</a>
+      <a href="#tendances" data-i18n="nav_trends">Tendances</a>
+      <a href="#romance" data-i18n="nav_romance">Romance</a>
+      <a href="#nouveautes" data-i18n="nav_new">Nouveautés</a>
     </div>
     <div class="search">
-      <input id="searchInput" type="search" placeholder="Rechercher une série...">
+      <input id="searchInput" type="search" data-i18n-placeholder="search_placeholder" placeholder="Rechercher une série...">
     </div>
-    <a class="nav-cta" id="navDownload">▶ Découvrir</a>
+    <a class="nav-cta" id="navDownload" data-i18n="nav_cta">▶ Découvrir</a>
   </nav>
 </header>
 
 <main id="accueil">
 
   <section class="hero">
-    <div class="eyebrow">Téléchargez et débloquez tout</div>
-    <h1>Une histoire incroyable.<br>Un épisode après l’autre.</h1>
-    <p>Cliquez pour télécharger. Après l’installation, débloquez toutes les séries. Tout est gratuit, sans publicité.</p>
-    <a class="hero-action" id="heroDownload">Explorer les séries →</a>
+    <div class="eyebrow" data-i18n="hero_eyebrow">Téléchargez et débloquez tout</div>
+    <h1 data-i18n="hero_title">Une histoire incroyable.<br>Un épisode après l’autre.</h1>
+    <p data-i18n="hero_desc">Cliquez pour télécharger. Après l’installation, débloquez toutes les séries. Tout est gratuit, sans publicité.</p>
+    <a class="hero-action" id="heroDownload" data-i18n="hero_btn">Explorer les séries →</a>
   </section>
 
   <section class="section" id="recommande">
     <div class="section-head">
-      <div class="section-title"><span class="spark">✦</span> Recommandé pour vous</div>
-      <a class="see-all" href="#tendances">Voir tout ›</a>
+      <div class="section-title"><span class="spark">✦</span> <span data-i18n="sec_recommended">Recommandé pour vous</span></div>
+      <a class="see-all" href="#tendances" data-i18n="see_all">Voir tout ›</a>
     </div>
     <div class="cards" id="recommended"></div>
   </section>
 
   <section class="section" id="nouveautes">
     <div class="section-head">
-      <div class="section-title"><span class="spark">✧</span> Récemment mis à jour</div>
-      <a class="see-all" href="#nouveautes">Voir tout ›</a>
+      <div class="section-title"><span class="spark">✧</span> <span data-i18n="sec_updated">Récemment mis à jour</span></div>
+      <a class="see-all" href="#nouveautes" data-i18n="see_all">Voir tout ›</a>
     </div>
     <div class="cards" id="updated"></div>
   </section>
 
   <section class="section" id="tendances">
     <div class="section-head">
-      <div class="section-title"><span class="spark">🎬</span> Tendances</div>
-      <a class="see-all" href="#tendances">Voir tout ›</a>
+      <div class="section-title"><span class="spark">🎬</span> <span data-i18n="sec_trending">Tendances</span></div>
+      <a class="see-all" href="#tendances" data-i18n="see_all">Voir tout ›</a>
     </div>
     <div class="cards" id="trending"></div>
   </section>
 
   <section class="section" id="romance">
     <div class="section-head">
-      <div class="section-title"><span class="spark">♥</span> Romance contemporaine</div>
-      <a class="see-all" href="#romance">Voir tout ›</a>
+      <div class="section-title"><span class="spark">♥</span> <span data-i18n="sec_romance">Romance contemporaine</span></div>
+      <a class="see-all" href="#romance" data-i18n="see_all">Voir tout ›</a>
     </div>
     <div class="cards" id="romanceCards"></div>
   </section>
@@ -209,22 +209,153 @@ main { max-width:1280px; margin:auto; padding:26px 22px 40px; }
     <div class="cards" id="adultCards"></div>
   </section>
 
-  <p class="bottom-note">MiniDrama · Des histoires courtes à découvrir chaque jour</p>
+  <p class="bottom-note" data-i18n="footer_note">MiniDrama · Des histoires courtes à découvrir chaque jour</p>
 </main>
 
 <div class="fixed-bottom">
-  <a id="bottomDownload">Installer pour débloquer tout le contenu</a>
+  <a id="bottomDownload" data-i18n="bottom_cta">Installer pour débloquer tout le contenu</a>
 </div>
 
 <nav class="mobile-nav">
-  <a href="#accueil"><b>⌂</b>Accueil</a>
-  <a href="#tendances"><b>▣</b>Tendances</a>
-  <a href="#nouveautes"><b>✦</b>Nouveautés</a>
-  <a href="#romance"><b>♥</b>Romance</a>
+  <a href="#accueil"><b>⌂</b><span data-i18n="nav_home">Accueil</span></a>
+  <a href="#tendances"><b>▣</b><span data-i18n="nav_trends">Tendances</span></a>
+  <a href="#nouveautes"><b>✦</b><span data-i18n="nav_new">Nouveautés</span></a>
+  <a href="#romance"><b>♥</b><span data-i18n="nav_romance">Romance</span></a>
 </nav>
 
 <script>
-// 统一下载 API
+// ==================== 语言包 ====================
+const translations = {
+  fr: {
+    nav_home: "Accueil",
+    nav_trends: "Tendances",
+    nav_romance: "Romance",
+    nav_new: "Nouveautés",
+    search_placeholder: "Rechercher une série...",
+    nav_cta: "▶ Découvrir",
+    hero_eyebrow: "Téléchargez et débloquez tout",
+    hero_title: "Une histoire incroyable.<br>Un épisode après l’autre.",
+    hero_desc: "Cliquez pour télécharger. Après l’installation, débloquez toutes les séries. Tout est gratuit, sans publicité.",
+    hero_btn: "Explorer les séries →",
+    sec_recommended: "Recommandé pour vous",
+    sec_updated: "Récemment mis à jour",
+    sec_trending: "Tendances",
+    sec_romance: "Romance contemporaine",
+    see_all: "Voir tout ›",
+    footer_note: "MiniDrama · Des histoires courtes à découvrir chaque jour",
+    bottom_cta: "Installer pour débloquer tout le contenu",
+    watch_all: "▶ Voir l’intégrale"
+  },
+  en: {
+    nav_home: "Home",
+    nav_trends: "Trending",
+    nav_romance: "Romance",
+    nav_new: "New",
+    search_placeholder: "Search a series...",
+    nav_cta: "▶ Discover",
+    hero_eyebrow: "Download and unlock everything",
+    hero_title: "An amazing story.<br>One episode after another.",
+    hero_desc: "Click to download. After installation, unlock all series. Everything is free, no ads.",
+    hero_btn: "Explore series →",
+    sec_recommended: "Recommended for you",
+    sec_updated: "Recently updated",
+    sec_trending: "Trending",
+    sec_romance: "Contemporary Romance",
+    see_all: "See all ›",
+    footer_note: "MiniDrama · Short stories to discover every day",
+    bottom_cta: "Install to unlock all content",
+    watch_all: "▶ Watch full"
+  },
+  cs: {
+    nav_home: "Domů",
+    nav_trends: "Trendy",
+    nav_romance: "Romantika",
+    nav_new: "Novinky",
+    search_placeholder: "Hledat seriál...",
+    nav_cta: "▶ Objevit",
+    hero_eyebrow: "Stáhněte a odemkněte vše",
+    hero_title: "Úžasný příběh.<br>Jeden díl za druhým.",
+    hero_desc: "Klikněte pro stažení. Po instalaci odemkněte všechny seriály. Vše zdarma, bez reklam.",
+    hero_btn: "Prozkoumat seriály →",
+    sec_recommended: "Doporučeno pro vás",
+    sec_updated: "Nedávno aktualizováno",
+    sec_trending: "Trendy",
+    sec_romance: "Současná romantika",
+    see_all: "Zobrazit vše ›",
+    footer_note: "MiniDrama · Krátké příběhy k objevování každý den",
+    bottom_cta: "Nainstalujte a odemkněte veškerý obsah",
+    watch_all: "▶ Sledovat celé"
+  },
+  ar: {
+    nav_home: "الرئيسية",
+    nav_trends: "الرائج",
+    nav_romance: "رومانسي",
+    nav_new: "جديد",
+    search_placeholder: "ابحث عن مسلسل...",
+    nav_cta: "▶ اكتشف",
+    hero_eyebrow: "حمّل وافتح كل شيء",
+    hero_title: "قصة رائعة.<br>حلقة بعد أخرى.",
+    hero_desc: "انقر للتحميل. بعد التثبيت، افتح جميع المسلسلات. كل شيء مجاني، بدون إعلانات.",
+    hero_btn: "استكشف المسلسلات →",
+    sec_recommended: "موصى به لك",
+    sec_updated: "تم التحديث مؤخرًا",
+    sec_trending: "الرائج",
+    sec_romance: "رومانسية معاصرة",
+    see_all: "عرض الكل ›",
+    footer_note: "MiniDrama · قصص قصيرة لاكتشافها كل يوم",
+    bottom_cta: "ثبّت لفتح كل المحتوى",
+    watch_all: "▶ مشاهدة الكل"
+  },
+  es: {
+    nav_home: "Inicio",
+    nav_trends: "Tendencias",
+    nav_romance: "Romance",
+    nav_new: "Novedades",
+    search_placeholder: "Buscar una serie...",
+    nav_cta: "▶ Descubrir",
+    hero_eyebrow: "Descarga y desbloquea todo",
+    hero_title: "Una historia increíble.<br>Un episodio tras otro.",
+    hero_desc: "Haz clic para descargar. Después de instalar, desbloquea todas las series. Todo gratis, sin anuncios.",
+    hero_btn: "Explorar series →",
+    sec_recommended: "Recomendado para ti",
+    sec_updated: "Actualizado recientemente",
+    sec_trending: "Tendencias",
+    sec_romance: "Romance contemporáneo",
+    see_all: "Ver todo ›",
+    footer_note: "MiniDrama · Historias cortas para descubrir cada día",
+    bottom_cta: "Instala para desbloquear todo el contenido",
+    watch_all: "▶ Ver completo"
+  }
+};
+
+// 检测浏览器语言
+function getLang() {
+  const lang = (navigator.language || navigator.userLanguage || "fr").toLowerCase();
+  if (lang.startsWith("cs")) return "cs";
+  if (lang.startsWith("en")) return "en";
+  if (lang.startsWith("ar")) return "ar";
+  if (lang.startsWith("es")) return "es";
+  if (lang.startsWith("fr")) return "fr";
+  return "fr"; // 默认法语
+}
+
+const currentLang = getLang();
+const t = translations[currentLang] || translations.fr;
+
+// 应用翻译
+function applyTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (t[key]) el.innerHTML = t[key];
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (t[key]) el.placeholder = t[key];
+  });
+}
+applyTranslations();
+
+// ==================== 下载 API ====================
 const DOWNLOAD_URL = "https://tacuehjb2zswi3vfaxkuo4sb4a0sexxu.lambda-url.eu-west-3.on.aws/C77QhEvWRYeN";
 
 const DRAMAS = [
@@ -309,7 +440,7 @@ function createCard(drama) {
   button.className = "download-btn";
   button.href = DOWNLOAD_URL;
   button.setAttribute("download", "");
-  button.innerHTML = "<span>▶</span> Voir l’intégrale";
+  button.innerHTML = t.watch_all || "▶ Voir l’intégrale";
 
   info.append(title, episodes, button);
   card.append(link, info);
