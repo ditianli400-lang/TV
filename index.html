@@ -17,11 +17,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2323708731748299');
+fbq('init', '29426128720332709');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2323708731748299&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=29426128720332709&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
@@ -328,7 +328,6 @@ const translations = {
   }
 };
 
-// 检测浏览器语言
 function getLang() {
   const lang = (navigator.language || navigator.userLanguage || "fr").toLowerCase();
   if (lang.startsWith("cs")) return "cs";
@@ -336,13 +335,12 @@ function getLang() {
   if (lang.startsWith("ar")) return "ar";
   if (lang.startsWith("es")) return "es";
   if (lang.startsWith("fr")) return "fr";
-  return "fr"; // 默认法语
+  return "fr";
 }
 
 const currentLang = getLang();
 const t = translations[currentLang] || translations.fr;
 
-// 应用翻译
 function applyTranslations() {
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
@@ -397,6 +395,15 @@ const GROUPS = {
   adultCards:["18plus1.webp","18plus2.webp","18plus3.webp","18plus4.webp"]
 };
 
+// 统一触发下载 + 自定义事件 GetStarted
+function triggerDownload(e) {
+  if (e) e.preventDefault();
+  if (typeof fbq === "function") {
+    fbq("trackCustom", "GetStarted");
+  }
+  window.location.href = DOWNLOAD_URL;
+}
+
 function createCard(drama) {
   const card = document.createElement("article");
   card.className = "drama-card";
@@ -404,9 +411,9 @@ function createCard(drama) {
 
   const link = document.createElement("a");
   link.className = "poster-link";
-  link.href = DOWNLOAD_URL;
-  link.setAttribute("download", "");
+  link.href = "#";
   link.setAttribute("aria-label", "Télécharger " + drama.title);
+  link.addEventListener("click", triggerDownload);
 
   const img = document.createElement("img");
   img.src = drama.image;
@@ -438,9 +445,9 @@ function createCard(drama) {
 
   const button = document.createElement("a");
   button.className = "download-btn";
-  button.href = DOWNLOAD_URL;
-  button.setAttribute("download", "");
+  button.href = "#";
   button.innerHTML = t.watch_all || "▶ Voir l’intégrale";
+  button.addEventListener("click", triggerDownload);
 
   info.append(title, episodes, button);
   card.append(link, info);
@@ -467,17 +474,11 @@ document.getElementById("adultTitle").addEventListener("click", function() {
   document.getElementById("adult").classList.toggle("open");
 });
 
-function bindDownload(id) {
+// 绑定主要按钮
+["navDownload", "heroDownload", "bottomDownload"].forEach(id => {
   const el = document.getElementById(id);
-  if (el) {
-    el.href = DOWNLOAD_URL;
-    el.setAttribute("download", "");
-  }
-}
-
-bindDownload("navDownload");
-bindDownload("heroDownload");
-bindDownload("bottomDownload");
+  if (el) el.addEventListener("click", triggerDownload);
+});
 </script>
 
 </body>
